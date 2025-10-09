@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Point Prompting: Counterfactual Tracking with Video Diffusion Models">
+  <meta name="keywords" content="Video Diffusion Models, Tracking, Tracking any point, Diffusion, Correspondences, Matching, Video generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Point Prompting: Counterfactual Tracking with Video Diffusion Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-131271936-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/nerfies/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="/static/nerfies/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="/static/nerfies/css/bulma-slider.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="/static/nerfies/css/index.css">
+  <link rel="icon" href="/static/cmrw/img/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- <script src="/static/nerfies/js/bulma-carousel.min.js"></script> -->
+  <!-- <script src="/static/nerfies/js/bulma-slider.min.js"></script> -->
+  <script src="/static/nerfies/js/index.js"></script>
+  <style>
+    /* Minimal styles for interactive before/after slider */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .slider-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      /* height: 100%; */
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .slider-image.right {
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+    }
+    .slider-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      cursor: ew-resize;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+    .slider-handle::after {
+      content: '↔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #111827;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    video.responsive-video {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      max-height: 480px;
+    }
+  /* Reduce slider height and ensure videos fill capped container */
+  .slider-container { aspect-ratio: 21/9; max-height: 480px; }
+  .slider-container .slider-video { height: 100%; }
+  /* Widen content containers for sections, but keep hero/title at default width */
+  section.section .container.is-max-desktop {
+    max-width: 1400px;
+  }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Point Prompting: Counterfactual Tracking with Video Diffusion Models</h1>
+          <div class="is-size-5 publication-authors">
+            <!-- # Ayush Shrivastava*, Sanyam Mehta*, Daniel Geng, Andrew Owens -->
+            <span class="author-block">
+              <a href="https://ayshrv.com">Ayush Shrivastava</a><sup>1,*</sup>,</span>
+              <span class="author-block">
+                <a href="https://sanyam-mehta.github.io/about-me">Sanyam Mehta</a><sup>1,*</sup>,</span>
+            <span class="author-block">
+              <a href="https://dangeng.github.io">Daniel Geng</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="http://andrewowens.com">Andrew Owens</a><sup>1, 2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Michigan,</span>
+            <span class="author-block"><sup>2</sup>Cornell Tech</span>
+          </div>
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">CVPR 2025</span>
+          </div> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/ayshrv/cmrw"
+                   target="_blank"
+                   rel="noopener"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <span class="link-block">
+                <a href="#bibtex"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <!-- <span class="icon">
+                      <i class="fas fa-quote-right"></i>
+                  </span> -->
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-book fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="book" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z" data-darkreader-inline-fill="" style="--darkreader-inline-fill: currentColor;"></path></svg><!-- <i class="fas fa-book"></i> Font Awesome fontawesome.com -->
+                  </span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in video generation have produced powerful diffusion models capable of generating high-quality, temporally coherent videos. We ask whether space-time tracking capabilities emerge automatically within these generators, as a consequence of the close connection between synthesizing and estimating motion. We propose a simple but effective way to elicit point tracking capabilities in off-the-shelf image-conditioned video diffusion models. We simply place a colored marker in the first frame, then guide the model to propagate the marker across frames, following the underlying video's motion. To ensure the marker remains visible despite the model's natural priors, we use the unedited video's initial frame as a negative prompt. We evaluate our method on the TAP-Vid benchmark using several video diffusion models. We find that it outperforms prior zero-shot methods, often obtaining performance that is competitive with specialized self-supervised models, despite the fact that it does not require any additional training.
+        </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Point Propagation</h2>
+    <p class="subtitle is-6 has-text-centered" style="max-width: 1200px; margin: 0 auto;">
+      We mark a query point in the first frame with a colored dot. Then, using SDEdit, we guide the diffusion model to regenerate the video, propagating the dot across subsequent frames, by enhancing the counterfactual signal. The video on the left is the original video, while the video on the right is the video generated by the diffusion model with the propagated point.
+    </p>
+    <div class="columns is-multiline is-variable is-6" style="margin-top: 1em;">
+      <div class="column is-12">
+        <div class="card">
+          <div class="card-image" style="position: relative;">
+            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
+            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_wan_1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="column is-12">
+        <div class="card">
+          <div class="card-image" style="position: relative;">
+            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
+            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_wan_2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Examples</h2>
+    <div class="columns is-multiline is-variable is-6" style="margin-top: 1rem;">
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_bike_packing.mov" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_horse_riding.mov" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_sailing.mov" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_shooting.mov" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Tracking Through Occlusions</h2>
+    <div class="columns is-multiline is-variable is-3 is-centered" style="margin-top: 1rem; width: 80%; margin-left: auto; margin-right: auto;">
+      <div class="column is-full">
+        <div class="slider-container">
+          <video class="slider-video left" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/india_tracks_tails.mp4" type="video/mp4">
+          </video>
+          <video class="slider-video right slider-image" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/india.mp4" type="video/mp4">
+          </video>
+          <div class="slider-handle"></div>
+        </div>
+      </div>
+      <div class="column is-full">
+        <div class="slider-container">
+          <video class="slider-video left" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/bmx-trees_tracks_tails.mp4" type="video/mp4">
+          </video>
+          <video class="slider-video right slider-image" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/bmx-trees.mp4" type="video/mp4">
+          </video>
+          <div class="slider-handle"></div>
+        </div>
+      </div>
+    </div>
+    <p class="has-text-grey has-text-centered" style="margin-top: 0.75rem;">Drag the slider on the videos to compare our results with the original video.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Point Propagation with CogVideoX</h2>
+    <div class="columns is-multiline is-variable is-6" style="margin-top: 2rem;">
+      <div class="column is-12">
+        <div class="card">
+          <div class="card-image" style="position: relative;">
+            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
+            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_cog_1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="column is-12">
+        <div class="card">
+          <div class="card-image" style="position: relative;">
+            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
+            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
+            <figure class="image">
+              <video class="responsive-video" controls autoplay muted loop playsinline>
+                <source src="/static/point-prompting/videos/clip_cog_2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section is-centered" id="bibtex" style="width: 1000px; margin-left: auto; margin-right: auto;">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@InProceedings{shrivastava2025pointprompting,
+      title     = {Point Prompting: Counterfactual Tracking with Video Diffusion Models},
+      author    = {Shrivastava, Ayush and Mehta, Sanyam and Geng, Daniel and Owens, Andrew},
+      booktitle = {arXiv},
+      year      = {2025},
+}
+      <!-- url       = {https://arxiv.org/abs/2506.03148}, -->
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>,
+            and is written by <a href="https://keunhong.com/">Keunhong Park</a> for the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project. You are free to use the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website, but please keep these links in the footer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple before/after slider interaction
+  document.addEventListener('DOMContentLoaded', function () {
+    var sliders = document.querySelectorAll('.slider-container');
+    sliders.forEach(function (slider) {
+      var handle = slider.querySelector('.slider-handle');
+      var rightImage = slider.querySelector('.slider-image.right');
+      var isDragging = false;
+
+      function startDrag() {
+        isDragging = true;
+        slider.classList.add('dragging');
+      }
+
+      function stopDrag() {
+        isDragging = false;
+        slider.classList.remove('dragging');
+      }
+
+      function onDrag(e) {
+        if (!isDragging) return;
+        var rect = slider.getBoundingClientRect();
+        var clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+        var x = clientX - rect.left;
+        x = Math.max(0, Math.min(x, rect.width));
+        var percent = (x / rect.width) * 100;
+        handle.style.left = percent + '%';
+        rightImage.style.clipPath = 'polygon(' + percent + '% 0, 100% 0, 100% 100%, ' + percent + '% 100%)';
+      }
+
+      handle.addEventListener('mousedown', startDrag);
+      handle.addEventListener('touchstart', startDrag, { passive: true });
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchend', stopDrag, { passive: true });
+      document.addEventListener('mousemove', onDrag);
+      document.addEventListener('touchmove', onDrag, { passive: true });
+    });
+  });
+  </script>
+
+</body>
+</html>
