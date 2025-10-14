@@ -1,0 +1,94 @@
+{
+    "videos": [
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/bike-packing_batch_0.mp4", 
+        "center": [500, 150], 
+        "crop_size": [300, 300], 
+        "start_percent": 0.0
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/blackswan_batch_0.mp4", 
+        "center": [430, 150], 
+        "crop_size": [300, 300], 
+        "start_percent": 0.9
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/bmx-trees_batch_0.mp4", 
+        "center": [350, 400], 
+        "crop_size": [350, 350], 
+        "start_percent": 0.2
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/camel_batch_5.mp4", 
+        "center": [400, 300], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.7
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/drift-chicane_batch_2.mp4", 
+        "center": [400, 200], 
+        "crop_size": [300, 300], 
+        "start_percent": 0.3
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/gold-fish_batch_2.mp4", 
+        "center": [700, 550], 
+        "crop_size": [500, 500], 
+        "start_percent": 0.1
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/horsejump-high_batch_1.mp4", 
+        "center": [300, 300], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.4
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/india_batch_7.mp4", 
+        "center": [500, 300], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.7
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/car-shadow_batch_11.mp4", 
+        "center": [500, 210], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.5
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/dogs-jump_batch_6.mp4", 
+        "center": [400, 300], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.9
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/car-roundabout_batch_11.mp4", 
+        "center": [460, 220], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.6
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/cows_batch_1.mp4", 
+        "center": [360, 200], 
+        "crop_size": [300, 300], 
+        "start_percent": 0.2
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/libby_batch_15.mp4", 
+        "center": [550, 250], 
+        "crop_size": [300, 300], 
+        "start_percent": 0.7
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/loading_batch_2.mp4", 
+        "center": [400, 300], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.4
+      },
+      {
+        "path": "/Users/ayshrv/Library/Mobile Documents/com~apple~CloudDocs/Files/OfflineDocuments/Projects/03_PhD/07_Tracking-from-video-models/Webpage/videos/parkour_batch_15.mp4", 
+        "center": [550, 200], 
+        "crop_size": [400, 400], 
+        "start_percent": 0.8
+      }
+    ]
+  }
