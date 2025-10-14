@@ -112,9 +112,9 @@
           <div class="is-size-5 publication-authors">
             <!-- # Ayush Shrivastava*, Sanyam Mehta*, Daniel Geng, Andrew Owens -->
             <span class="author-block">
-              <a href="https://ayshrv.com">Ayush Shrivastava</a><sup>1,*</sup>,</span>
+              <a href="https://ayshrv.com">Ayush Shrivastava</a><sup>1 *</sup>,</span>
               <span class="author-block">
-                <a href="https://sanyam-mehta.github.io/about-me">Sanyam Mehta</a><sup>1,*</sup>,</span>
+                <a href="https://sanyam-mehta.github.io/about-me">Sanyam Mehta</a><sup>1 *</sup>,</span>
             <span class="author-block">
               <a href="https://dangeng.github.io">Daniel Geng</a><sup>1</sup>,</span>
             <span class="author-block">
@@ -123,7 +123,7 @@
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Michigan,</span>
-            <span class="author-block"><sup>2</sup>Cornell Tech</span>
+            <span class="author-block"><sup>2</sup>Cornell University</span>
           </div>
           <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">CVPR 2025</span>
@@ -133,23 +133,23 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="https://arxiv.org/pdf/2510.11715"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper (Coming Soon)</span>
+                  <span>Paper</span>
                 </a>
               </span>
-              <!-- <span class="link-block">
-                <a href=""
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2510.11715"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span> -->
+              </span>
               <!-- Video Link. -->
               <!-- <span class="link-block">
                 <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
@@ -202,7 +202,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent advances in video generation have produced powerful diffusion models capable of generating high-quality, temporally coherent videos. We ask whether space-time tracking capabilities emerge automatically within these generators, as a consequence of the close connection between synthesizing and estimating motion. We propose a simple but effective way to elicit point tracking capabilities in off-the-shelf image-conditioned video diffusion models. We simply place a colored marker in the first frame, then guide the model to propagate the marker across frames, following the underlying video's motion. To ensure the marker remains visible despite the model's natural priors, we use the unedited video's initial frame as a negative prompt. We evaluate our method on the TAP-Vid benchmark using several video diffusion models. We find that it outperforms prior zero-shot methods, often obtaining performance that is competitive with specialized self-supervised models, despite the fact that it does not require any additional training.
+            Trackers and video generators solve closely related problems: the former analyze motion, while the latter synthesize it. We show that this connection enables pretrained video diffusion models to perform zero-shot point tracking by simply prompting them to visually mark points as they move over time. We place a distinctively colored marker at the query point, then regenerate the rest of the video from an intermediate noise level. This propagates the marker across frames, tracing the point's trajectory. To ensure that the marker remains visible in this counterfactual generation, despite such markers being unlikely in natural videos, we use the unedited initial frame as a negative prompt. Through experiments with multiple image-conditioned video diffusion models, we find that these "emergent" tracks outperform those of prior zero-shot methods and persist through occlusions, often obtaining performance that is competitive with specialized self-supervised models.
         </p>
         </div>
       </div>
