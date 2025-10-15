@@ -96,8 +96,8 @@
       margin-right: auto;
       background-color: transparent;
       box-shadow: none;
-      border: 0;
-      vertical-align: top;
+      /* border: 0; */
+      /* vertical-align: top; */
     }
     video.responsive-video-2 {
       width: 100%;
@@ -121,8 +121,9 @@
       background-color: transparent;
     }
     .video-bordered {
-      border: 6px solid #e5e7eb;
-      margin: 0.5rem auto;
+      border: 2px solid #c2c2c2;
+      border-radius: 8px;
+      /* margin: 0.5rem auto; */
       padding: 0.5rem;
     }
   /* Reduce slider height and ensure videos fill capped container */
@@ -133,7 +134,7 @@
     max-width: 1400px;
   }
   .no-shadow { box-shadow: none !important; border: 0 !important; background: transparent !important; overflow: hidden; line-height: 0; }
-  .video-crop-bottom { clip-path: inset(0 0 1px 0); }
+  .video-crop-bottom { clip-path: inset(0 0 10px 0); }
   </style>
 </head>
 <body>
@@ -278,27 +279,28 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Point Propagation</h2>
     <div class="column is-12 is-centered">
-      <figure class="no-shadow">
+      <figure class="video-bordered" style="width: 90%; margin: 0 auto;">
           <video class="responsive-video video-crop-bottom" autoplay muted loop playsinline>
             <source src="/static/point-prompting/videos/point_propagation.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
       </figure>
-      <br><br>
+      <br/>
       <p class="subtitle is-6 has-text-centered" style="width: 80%; margin: 0 auto;">
         We mark a query point in the first frame with a colored dot. Then, using SDEdit, we guide the diffusion model to regenerate the video, propagating the dot across subsequent frames, by enhancing the counterfactual signal. The regenerated video propagates the marker across frames, tracing the underlying point's trajectory.
       </p>
     </div>
 
-    <!-- <h2 class="title is-4 has-text-centered">Enhancing the Counterfactual Signal</h2>
+    <h2 class="title is-4 has-text-centered" style="margin-top: 3rem;">Enhancing the Counterfactual Signal</h2>
     <div class="column is-12 is-centered">
-      <figure class="image">
-        <video class="responsive-video video-bordered" autoplay muted loop playsinline style="width: 90%; height: auto; object-fit: contain;">
-          <source src="/static/point-prompting/videos/counterfactual_signal.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+      <figure class="image" style="width: 90%; margin: 0 auto;">
+        <img src="/static/point-prompting/imgs/counterfactual-enhance.png">
       </figure>
-    </div> -->
+      <br/>
+      <p class="subtitle is-6 has-text-centered" style="width: 80%; margin: 0 auto">
+        We use negative prompting to ensure that the generated video contains the marker. In each denoising step, we condition the denoising on two images: (1) <b>Edited First Frame</b>: the first frame of the video with a marking added, and (2) <b>Unedited First Frame</b>: the original first frame of the video. We then subtract the weighted noise vector of the latter from the former.
+      </p>
+    </div>
 
   </div>
 
