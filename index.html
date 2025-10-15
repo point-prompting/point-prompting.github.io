@@ -126,6 +126,9 @@
       /* margin: 0.5rem auto; */
       padding: 0.5rem;
     }
+    .video-corner-cropped {
+      border-radius: 8px;
+    }
   /* Reduce slider height and ensure videos fill capped container */
   .slider-container { 
     aspect-ratio: 21/9; 
@@ -133,7 +136,7 @@
   }
   .slider-container-gen-videos { 
     max-height: 1200px; 
-    max-width: 1400px;
+    max-width: 1800px;
   }
     .slider-container .slider-video { height: 100%; }
   /* Widen content containers for sections, but keep hero/title at default width */
@@ -143,9 +146,10 @@
   .no-shadow { box-shadow: none !important; border: 0 !important; background: transparent !important; overflow: hidden; line-height: 0; }
   .video-crop-bottom { clip-path: inset(0 0 10px 0); }
   /* Scoped slider styles from CMRW */
+  .slider-section { overflow: hidden; }
   .slider-section .slider-container {
     position: relative;
-    width: 130%;
+    width: 100%;
     max-width: 1300px;
     margin: 0 auto;
     overflow: hidden;
@@ -154,12 +158,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
     max-height: 1500px;
   }
   .slider-section .slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
-  .slider-section .slide { min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
+  .slider-section .slide { flex: 0 0 100%; min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; height: 100%; }
   .slider-section .grid1x1-depth { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; gap: 16px; width: 100%; max-width: 1100px; height: 100%; margin: 0 auto; }
   .slider-section .grid1x1-small { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; gap: 16px; width: 100%; max-width: 1000px; height: 100%; margin: 0 auto; }
   .slider-section .grid2x2 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; width: 100%; max-width: 1250px; height: 100%; margin: 0 auto; }
@@ -193,7 +197,7 @@
             <span class="author-block">
               <a href="https://dangeng.github.io">Daniel Geng</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="http://andrewowens.com">Andrew Owens</a><sup>1, 2</sup></span>
+              <a href="http://andrewowens.com">Andrew Owens</a><sup>1,2</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -360,29 +364,29 @@
         <!-- Any description here -->
       </div>
     </div>
-    <div class="slider-section" id="gen_videos_slider">
+    <div class="slider-section" id="gen_videos_slider" >
       <div class="slider-container-gen-videos">
         <div class="slider">
           
           <div class="slide">
             <div class="grid2x2">
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/bike-packing_batch_0.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/bmx-trees_batch_5.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/parkour_batch_17.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/india_batch_5.mp4" type="video/mp4">
                 </video>
               </div>
@@ -392,22 +396,22 @@
           <div class="slide">
             <div class="grid2x2">
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/blackswan_batch_4.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/car-roundabout_batch_15.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/dogs-jump_batch_5.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/soapbox_batch_1.mp4" type="video/mp4">
                 </video>
               </div>
@@ -417,22 +421,22 @@
           <div class="slide">
             <div class="grid2x2">
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/kite-surf_batch_0.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/horsejump-high_batch_1.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/gold-fish_batch_22.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/car-shadow_batch_17.mp4" type="video/mp4">
                 </video>
               </div>
@@ -442,22 +446,22 @@
           <div class="slide">
             <div class="grid2x2">
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/camel_batch_6.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/paragliding-launch_batch_20.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/drift-straight_batch_0.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/dog_batch_2.mp4" type="video/mp4">
                 </video>
               </div>
@@ -467,22 +471,22 @@
           <div class="slide">
             <div class="grid2x2">
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/shooting_batch_2.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/lab-coat_batch_0.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/libby_batch_15.mp4" type="video/mp4">
                 </video>
               </div>
               <div>
-                <video autoplay muted loop playsinline>
+                <video class="video-corner-cropped" autoplay muted loop playsinline>
                   <source src="/static/point-prompting/videos/gen_videos/cows_batch_3.mp4" type="video/mp4">
                 </video>
               </div>
@@ -495,6 +499,15 @@
       </div>
       <!-- <p style="text-align: center; ">(Frame transition: 1.5 sec)</p> -->
       <div class="slider-dots"></div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-4">Tracking</h2>
+        <!-- Any description here -->
+      </div>
     </div>
   </div>
 </section>
