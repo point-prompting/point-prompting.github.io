@@ -298,7 +298,7 @@
       </figure>
       <br/>
       <p class="subtitle is-6 has-text-centered" style="width: 80%; margin: 0 auto">
-        We use negative prompting to ensure that the generated video contains the marker. In each denoising step, we condition the denoising on two images: (1) <b>Edited First Frame</b>: the first frame of the video with a marking added, and (2) <b>Unedited First Frame</b>: the original first frame of the video. We then subtract the weighted noise vector of the latter from the former.
+        We use negative prompting to ensure that the generated video contains the marker. In each denoising step, we condition the denoising on two images: (1) <b>Edited First Frame</b>: the first frame of the video with a marking added, and (2) <b>Unedited First Frame</b>: the original first frame of the video. We then subtract the weighted noise vector of the latter from the former which enhances the counterfactual signal.
       </p>
     </div>
 

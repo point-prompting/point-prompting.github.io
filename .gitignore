@@ -3,3 +3,6 @@ _site/
 _static/
 .DS_Store
 **/.DS_Store
+static/.DS_Store
+static/point-prompting/.DS_Store
+static/img/.DS_Store
