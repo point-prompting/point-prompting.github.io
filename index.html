@@ -127,14 +127,53 @@
       padding: 0.5rem;
     }
   /* Reduce slider height and ensure videos fill capped container */
-  .slider-container { aspect-ratio: 21/9; max-height: 480px; }
-  .slider-container .slider-video { height: 100%; }
+  .slider-container { 
+    aspect-ratio: 21/9; 
+    max-height: 900px; 
+  }
+  .slider-container-gen-videos { 
+    max-height: 1200px; 
+    max-width: 1400px;
+  }
+    .slider-container .slider-video { height: 100%; }
   /* Widen content containers for sections, but keep hero/title at default width */
   section.section .container.is-max-desktop {
     max-width: 1400px;
   }
   .no-shadow { box-shadow: none !important; border: 0 !important; background: transparent !important; overflow: hidden; line-height: 0; }
   .video-crop-bottom { clip-path: inset(0 0 10px 0); }
+  /* Scoped slider styles from CMRW */
+  .slider-section .slider-container {
+    position: relative;
+    width: 130%;
+    max-width: 1300px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto;
+    min-height: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 1500px;
+  }
+  .slider-section .slider { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+  .slider-section .slide { min-width: 100%; box-sizing: border-box; display: flex; justify-content: center; align-items: center; height: 100%; width: 100%; }
+  .slider-section .grid1x1-depth { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; gap: 16px; width: 100%; max-width: 1100px; height: 100%; margin: 0 auto; }
+  .slider-section .grid1x1-small { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; gap: 16px; width: 100%; max-width: 1000px; height: 100%; margin: 0 auto; }
+  .slider-section .grid2x2 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; width: 100%; max-width: 1250px; height: 100%; margin: 0 auto; }
+  .slider-section .grid3x3 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 16px; width: 100%; max-width: 1200px; height: 100%; margin: 0 auto; }
+  .slider-section .video-with-label { display: flex; flex-direction: column; height: 100%; width: 100%; }
+  .slider-section .video-with-label video { width: 100%; height: 100%; max-height: 100%; object-fit: contain; background: #eee; display: block; }
+  .slider-section .video-label { width: 100%; text-align: center; font-size: 1rem; color: #222; background: rgba(255,255,255,0.85); padding: 4px 0 2px 0; height: 15%; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .slider-section .slider-button { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; padding: 16px 12px; border: none; cursor: pointer; font-size: 18px; transition: background 0.3s; z-index: 3; }
+  .slider-section .slider-button:hover { background: rgba(0, 0, 0, 0.8); }
+  .slider-section .prev { left: 0; }
+  .slider-section .next { right: 0; }
+  .slider-section .slider-dots { display: flex; justify-content: center; align-items: center; margin: 18px 0 0 0; gap: 10px; }
+  .slider-section .slider-dot { width: 12px; height: 12px; border-radius: 50%; background: #bbb; opacity: 0.5; transition: background 0.3s, opacity 0.3s; cursor: pointer; }
+  .slider-section .slider-dot.active { background: #222; opacity: 1; }
   </style>
 </head>
 <body>
@@ -306,6 +345,162 @@
 
 </section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <p class="mb-6"></p>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-4">Point Propagation</h2>
+        <!-- Any description here -->
+      </div>
+    </div>
+    <div class="slider-section" id="gen_videos_slider">
+      <div class="slider-container-gen-videos">
+        <div class="slider">
+          
+          <div class="slide">
+            <div class="grid2x2">
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/bike-packing_batch_0.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/bmx-trees_batch_5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/parkour_batch_17.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/india_batch_5.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="grid2x2">
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/blackswan_batch_4.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/car-roundabout_batch_15.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/dogs-jump_batch_5.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/soapbox_batch_1.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="grid2x2">
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/kite-surf_batch_0.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/horsejump-high_batch_1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/gold-fish_batch_22.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/car-shadow_batch_17.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="grid2x2">
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/camel_batch_6.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/paragliding-launch_batch_20.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/drift-straight_batch_0.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/dog_batch_2.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="grid2x2">
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/shooting_batch_2.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/lab-coat_batch_0.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/libby_batch_15.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop playsinline>
+                  <source src="/static/point-prompting/videos/gen_videos/cows_batch_3.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <button class="slider-button prev">❮</button>
+        <button class="slider-button next">❯</button>
+      </div>
+      <!-- <p style="text-align: center; ">(Frame transition: 1.5 sec)</p> -->
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Qualitative Examples</h2>
@@ -364,7 +559,7 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Tracking Through Occlusions</h2>
+    <h2 class="title is-4 has-text-centered">Tracking Through Occlusions</h2>
     <div class="columns is-multiline is-variable is-3 is-centered" style="margin-top: 1rem; width: 80%; margin-left: auto; margin-right: auto;">
       <div class="column is-full">
         <div class="slider-container">
@@ -465,23 +660,16 @@
 
 <script>
   // Simple before/after slider interaction
+  // Simple before/after slider interaction (unchanged)
   document.addEventListener('DOMContentLoaded', function () {
     var sliders = document.querySelectorAll('.slider-container');
     sliders.forEach(function (slider) {
       var handle = slider.querySelector('.slider-handle');
       var rightImage = slider.querySelector('.slider-image.right');
+      if (!handle || !rightImage) return;
       var isDragging = false;
-
-      function startDrag() {
-        isDragging = true;
-        slider.classList.add('dragging');
-      }
-
-      function stopDrag() {
-        isDragging = false;
-        slider.classList.remove('dragging');
-      }
-
+      function startDrag() { isDragging = true; slider.classList.add('dragging'); }
+      function stopDrag() { isDragging = false; slider.classList.remove('dragging'); }
       function onDrag(e) {
         if (!isDragging) return;
         var rect = slider.getBoundingClientRect();
@@ -492,7 +680,6 @@
         handle.style.left = percent + '%';
         rightImage.style.clipPath = 'polygon(' + percent + '% 0, 100% 0, 100% 100%, ' + percent + '% 100%)';
       }
-
       handle.addEventListener('mousedown', startDrag);
       handle.addEventListener('touchstart', startDrag, { passive: true });
       document.addEventListener('mouseup', stopDrag);
@@ -500,6 +687,37 @@
       document.addEventListener('mousemove', onDrag);
       document.addEventListener('touchmove', onDrag, { passive: true });
     });
+  });
+
+  // Slider initializer copied from CMRW snippet
+  function initSlider(sliderSection) {
+    const slider = sliderSection.querySelector('.slider');
+    const slides = sliderSection.querySelectorAll('.slide');
+    const prevBtn = sliderSection.querySelector('.slider-button.prev');
+    const nextBtn = sliderSection.querySelector('.slider-button.next');
+    const dotsContainer = sliderSection.querySelector('.slider-dots');
+    if (!slider || !slides.length || !prevBtn || !nextBtn || !dotsContainer) return;
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    // Rely on CSS for widths; don't set inline width on slider or slides
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { currentSlide = i; updateSlider(); });
+      dotsContainer.appendChild(dot);
+    }
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      const dots = dotsContainer.querySelectorAll('.slider-dot');
+      dots.forEach((dot, idx) => { dot.classList.toggle('active', idx === currentSlide); });
+    }
+    prevBtn.addEventListener('click', () => { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); });
+    nextBtn.addEventListener('click', () => { currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.slider-section').forEach(initSlider);
   });
   </script>
 
