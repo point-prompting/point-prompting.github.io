@@ -364,6 +364,13 @@
         <!-- Any description here -->
       </div>
     </div>
+    <div class="columns is-centered">
+      <div class="content">
+      <p class="is-6 has-text-centered" style="margin-bottom: 0.5rem; margin-top: 0.5rem;">
+      These generated videos show a propagated <span style="color: red;">red marker</span> across time. The video model used here is <b>Wan2.1 14B I2V</b>.
+      </p>
+      </div>
+    </div>
     <div class="slider-section" id="gen_videos_slider" >
       <div class="slider-container-gen-videos">
         <div class="slider">
@@ -511,6 +518,14 @@
       <div class="content">
         <h2 class="title is-4">Tracking</h2>
         <!-- Any description here -->
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="content">
+      <p class="is-6 has-text-centered" style="margin-bottom: 0.5rem; margin-top: 0.5rem;">
+      We run a color-based tracker on generated videos to get the track for a propagated point. We combine the tracks for all propagated points and show it here.
+      </p>
       </div>
     </div>
   
@@ -661,39 +676,119 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-4 has-text-centered">Point Propagation with CogVideoX</h2>
-    <div class="columns is-multiline is-variable is-6" style="margin-top: 2rem;">
-      <div class="column is-12">
-        <div class="card">
-          <div class="card-image" style="position: relative;">
-            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
-            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
-            <figure class="image">
-              <video class="responsive-video-2" autoplay muted loop playsinline>
-                <source src="/static/point-prompting/videos/clip_cog_1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </figure>
-          </div>
-        </div>
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Failure Cases</h2>
       </div>
-      <div class="column is-12">
-        <div class="card">
-          <div class="card-image" style="position: relative;">
-            <div style="position: absolute; top: 2%; left: 0; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Original Video</div>
-            <div style="position: absolute; top: 2%; left: 50%; width: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.5); color: #fff; font-weight: 700; z-index: 1;">Generated Video With Propagated Point</div>
-            <figure class="image">
-              <video class="responsive-video-2" autoplay muted loop playsinline>
-                <source src="/static/point-prompting/videos/clip_cog_2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </figure>
-          </div>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="content">
+      <p class="is-6 has-text-centered" style="margin-bottom: 0.5rem; margin-top: 0.5rem;">
+      These generated videos show failure cases of our method.
+      </p>
+      </div>
+    </div>
+    <div class="slider-section" id="failure_videos">
+      <div class="grid2x2">
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/failure_cases/cows_batch_4.mp4" type="video/mp4">
+          </video>
+          <p class="has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            <b>Stationary Point</b>: Point remains stationary with respect to the image boundaries.
+          </p>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/failure_cases/parkour_batch_1.mp4" type="video/mp4">
+          </video>
+          <p class="has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            <b>Symmetry</b>: Point drawn on the right foot gets propagated to the left foot.
+          </p>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/failure_cases/lab-coat_batch_10.mp4" type="video/mp4">
+          </video>
+          <p class="has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            <b>Propagation Failure</b>: Model fails to propagate the point in the last few frames.
+          </p>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/failure_cases/horsejump-high_batch_20.mp4" type="video/mp4">
+          </video>
+          <p class="has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+            <b>Ambiguity Near Edges</b>: Point near the boundary snaps to background.
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Point Propagation (with CogVideoX)</h2>
+      </div>
+    </div>
+    
+    <div class="slider-section" id="cogvideox_videos">
+      <div class="grid2x2">
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/cogvideo/blackswan_batch_0.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/cogvideo/india_batch_2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/cogvideo/car-shadow_batch_10.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <video class="video-corner-cropped" autoplay muted loop playsinline>
+            <source src="/static/point-prompting/videos/cogvideo/horsejump-high_batch_2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>  
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Related Work</h2>
+        <!-- Any description here -->
+      </div>
+
+    </div>
+        <div class="content" style="font-size: 1.0em;">
+          <ol>
+            <li><a href="https://camera-settings-as-tokens.github.io/" target="_blank">DIFT</a></li>
+            <li>Dan Yamins, Counterfactual Paper</li>
+            <li>Dan Yamins, recent tracking paper</li>
+            <li>Wan2.1 paper</li>
+            <li>CogVideoX paper</li>
+            <li>Google Korean paper</li>
+          </ol>
+        </div>
+    </div>
+    
+  </div>
+</section>
+
 
 
 <section class="section is-centered" id="bibtex" style="width: 1000px; margin-left: auto; margin-right: auto;">
@@ -797,6 +892,15 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.slider-section').forEach(initSlider);
+    // Delay-start videos: pause initially, then play after specified delay
+    var delayedVideos = document.querySelectorAll('video[data-delay-start]');
+    delayedVideos.forEach(function(v){
+      var delayMs = parseInt(v.getAttribute('data-delay-start') || '1000', 10);
+      // Ensure we start paused at first frame
+      v.pause();
+      v.currentTime = 0;
+      setTimeout(function(){ v.play().catch(function(){}); }, delayMs);
+    });
   });
   </script>
 
